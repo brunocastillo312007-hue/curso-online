@@ -15,13 +15,13 @@
 
 /* Escalado proporcional de elementos internos según el tamaño seleccionado */
 .texto-grande .card, 
-.texto-grande .table, 
+.texto-grande .content-section, 
 .texto-grande .btn {
   font-size: 1.05rem !important;
 }
 
 .texto-extra-grande .card, 
-.texto-extra-grande .table, 
+.texto-extra-grande .content-section, 
 .texto-extra-grande .btn {
   font-size: 1.15rem !important;
 }
@@ -32,33 +32,42 @@
    ================================================---------- */
 /* Fondo general completamente negro profundo */
 .bg-dark, 
-.bg-dark.container-fluid, 
-.bg-dark .col.h-100.overflow-y-auto {
+.bg-dark.admin-container,
+.bg-dark .main-content {
   background-color: #000000 !important;
+  color: #f8f9fa !important;
 }
 
 /* Contenedor principal de la sección de usuarios/cursos */
+.bg-dark .content-section,
 .bg-dark .card.border-0.shadow-sm.p-4 {
   background-color: #121212 !important;
   color: #ffffff !important;
 }
 
 /* Tarjetas métricas superiores en modo oscuro */
+.bg-dark .stats-grid .stat-card,
 .bg-dark .row.g-3.mb-4 .card {
   background-color: #18181b !important;
   color: #f8f9fa !important;
   border: 1px solid #27272a !important;
 }
 
+.bg-dark .stats-grid .stat-card span,
 .bg-dark .row.g-3.mb-4 .card small {
   color: #a1a1aa !important;
 }
 
+.bg-dark .stats-grid .stat-card h2,
 .bg-dark .row.g-3.mb-4 .card h2 {
   color: #ffffff !important;
 }
 
 /* Tablas y filas en modo oscuro */
+.bg-dark .data-table, 
+.bg-dark .data-table td, 
+.bg-dark .data-table th, 
+.bg-dark .data-table tr,
 .bg-dark .table, 
 .bg-dark .table td, 
 .bg-dark .table th, 
@@ -66,6 +75,11 @@
   background-color: #121212 !important;
   color: #f8f9fa !important;
   border-color: #27272a !important;
+}
+
+.bg-dark .data-table th {
+  background-color: #1e1e2f !important;
+  color: #ffffff !important;
 }
 
 .bg-dark .table td .fw-bold {
@@ -87,4 +101,230 @@
 .bg-dark .form-select option {
   background-color: #18181b !important;
   color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   3. LAYOUT RESPONSIVO Y ESTRUCTURA (Escritorio y Móvil)
+   ========================================================== */
+* {
+  box-sizing: border-box;
+}
+
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #1e1e2f;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-header h2 {
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+}
+
+.sidebar-header .badge {
+  background-color: #3b82f6;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.accessibility-controls {
+  margin: 20px 0;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.control-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-group button, .btn-theme {
+  background: #2d2d44;
+  border: none;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-group button.active, .btn-group button:hover, .btn-theme:hover {
+  background: #3b82f6;
+}
+
+.btn-theme {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.sidebar-menu button {
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.sidebar-menu button.active, .sidebar-menu button:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.sidebar-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 15px;
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar-icon {
+  background: #3b82f6;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.btn-logout {
+  width: 100%;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-x: hidden;
+  background-color: #f4f6f9;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.content-section {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table th, .data-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.data-table th {
+  background: #f8fafc;
+  color: #475569;
+}
+
+/* Media Queries para Móviles */
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-control {
+    max-width: 100%;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
 }
