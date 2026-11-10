@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ import { SpeechService } from '../../services/speech.service'; // <--- Importamo
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './admin.html',
-  styleUrls: ['./admin.css']
+  styleUrls: ['./admin.css'],
+  encapsulation: ViewEncapsulation.None //
 })
 export class AdminComponent implements OnInit {
   usuariosAdmin: any[] = [];
