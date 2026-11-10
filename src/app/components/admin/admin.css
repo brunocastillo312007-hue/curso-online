@@ -29,7 +29,7 @@
 }
 
 /* ==========================================================
-   2. TAMAÑOS DE TEXTO DINÁMICOS
+   2. TAMAÑOS DE TEXTO DINÁMICOS (A, A+, A++)
    ========================================================== */
 .texto-normal {
   --base-font-size: 1rem;
@@ -43,14 +43,17 @@
   --base-font-size: 1.3rem;
 }
 
-/* Escalado proporcional para todos los textos y elementos */
+/* Aplicar tamaño dinámico a todo el panel */
+.admin-container, 
 .admin-container p, 
 .admin-container span, 
 .admin-container a, 
 .admin-container label,
 .admin-container button,
 .admin-container input,
-.admin-container select {
+.admin-container select,
+.admin-container th,
+.admin-container td {
   font-size: var(--base-font-size) !important;
 }
 
@@ -62,13 +65,9 @@
   font-size: calc(var(--base-font-size) * 1.25) !important;
 }
 
-.stat-card h2 {
-  font-size: calc(var(--base-font-size) * 1.8) !important;
-}
-
 
 /* ==========================================================
-   3. MODO OSCURO (Activado por la clase .bg-dark)
+   3. MODO OSCURO
    ========================================================== */
 .bg-dark {
   --bg-main: #000000 !important;
@@ -112,10 +111,11 @@
 
 
 /* ==========================================================
-   4. LAYOUT Y COMPONENTES (Escritorio y Móvil)
+   4. LAYOUT Y SIDEBAR FIJO
    ========================================================== */
 .sidebar {
   width: 260px;
+  min-width: 260px; /* Evita que se comprima */
   background-color: var(--bg-sidebar);
   color: #fff;
   display: flex;
@@ -145,7 +145,6 @@
 }
 
 .control-label {
-  font-size: 0.85rem;
   color: #94a3b8;
   display: block;
   margin-bottom: 5px;
@@ -309,6 +308,7 @@
   }
   .sidebar {
     width: 100%;
+    min-width: 100%;
     height: auto;
   }
   .section-header {
