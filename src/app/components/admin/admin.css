@@ -1,330 +1,90 @@
 /* ==========================================================
-   1. VARIABLES Y CONFIGURACIÓN BASE
-   ========================================================== */
-:host {
-  --base-font-size: 1rem;
-  --bg-main: #f4f6f9;
-  --bg-sidebar: #1e1e2f;
-  --bg-card: #ffffff;
-  --text-main: #333333;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --table-header: #f8fafc;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.admin-container {
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  font-size: var(--base-font-size);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* ==========================================================
-   2. TAMAÑOS DE TEXTO DINÁMICOS (A, A+, A++)
-   ========================================================== */
+   1. ESTILOS DE TAMAÑO DE TEXTO GLOBALES (Claro y Oscuro)
+   ================================================---------- */
 .texto-normal {
-  --base-font-size: 1rem;
+  font-size: 1rem !important;
 }
 
 .texto-grande {
-  --base-font-size: 1.15rem;
+  font-size: 1.15rem !important;
 }
 
 .texto-extra-grande {
-  --base-font-size: 1.3rem;
+  font-size: 1.3rem !important;
 }
 
-/* Aplicar tamaño dinámico a todo el panel */
-.admin-container, 
-.admin-container p, 
-.admin-container span, 
-.admin-container a, 
-.admin-container label,
-.admin-container button,
-.admin-container input,
-.admin-container select,
-.admin-container th,
-.admin-container td {
-  font-size: var(--base-font-size) !important;
+/* Escalado proporcional de elementos internos según el tamaño seleccionado */
+.texto-grande .card, 
+.texto-grande .table, 
+.texto-grande .btn {
+  font-size: 1.05rem !important;
 }
 
-.admin-container h2 {
-  font-size: calc(var(--base-font-size) * 1.5) !important;
-}
-
-.admin-container h3 {
-  font-size: calc(var(--base-font-size) * 1.25) !important;
+.texto-extra-grande .card, 
+.texto-extra-grande .table, 
+.texto-extra-grande .btn {
+  font-size: 1.15rem !important;
 }
 
 
 /* ==========================================================
-   3. MODO OSCURO
-   ========================================================== */
-.bg-dark {
-  --bg-main: #000000 !important;
-  --bg-sidebar: #121212 !important;
-  --bg-card: #18181b !important;
-  --text-main: #f8f9fa !important;
-  --text-muted: #a1a1aa !important;
-  --border-color: #27272a !important;
-  --table-header: #1e1e2f !important;
-}
-
-.bg-dark .main-content {
+   2. ESTILOS DE MODO OSCURO (Fondo negro y tarjetas oscuras)
+   ================================================---------- */
+/* Fondo general completamente negro profundo */
+.bg-dark, 
+.bg-dark.container-fluid, 
+.bg-dark .col.h-100.overflow-y-auto {
   background-color: #000000 !important;
 }
 
-.bg-dark .content-section, 
-.bg-dark .stat-card {
-  background-color: var(--bg-card) !important;
-  color: var(--text-main) !important;
-  border: 1px solid var(--border-color);
-}
-
-.bg-dark .data-table th {
-  background-color: var(--table-header) !important;
+/* Contenedor principal de la sección de usuarios/cursos */
+.bg-dark .card.border-0.shadow-sm.p-4 {
+  background-color: #121212 !important;
   color: #ffffff !important;
 }
 
-.bg-dark .data-table td, 
-.bg-dark .data-table tr {
-  background-color: var(--bg-card) !important;
-  color: var(--text-main) !important;
-  border-color: var(--border-color) !important;
+/* Tarjetas métricas superiores en modo oscuro */
+.bg-dark .row.g-3.mb-4 .card {
+  background-color: #18181b !important;
+  color: #f8f9fa !important;
+  border: 1px solid #27272a !important;
 }
 
-.bg-dark .form-control,
-.bg-dark .form-select-sm {
-  background-color: #27272a !important;
+.bg-dark .row.g-3.mb-4 .card small {
+  color: #a1a1aa !important;
+}
+
+.bg-dark .row.g-3.mb-4 .card h2 {
+  color: #ffffff !important;
+}
+
+/* Tablas y filas en modo oscuro */
+.bg-dark .table, 
+.bg-dark .table td, 
+.bg-dark .table th, 
+.bg-dark .table tr {
+  background-color: #121212 !important;
+  color: #f8f9fa !important;
+  border-color: #27272a !important;
+}
+
+.bg-dark .table td .fw-bold {
+  color: #ffffff !important;
+}
+
+.bg-dark .table td .text-muted {
+  color: #a1a1aa !important;
+}
+
+/* Inputs y selectores de roles en modo oscuro */
+.bg-dark .form-select, 
+.bg-dark .form-control {
+  background-color: #18181b !important;
   color: #ffffff !important;
   border-color: #3f3f46 !important;
 }
 
-
-/* ==========================================================
-   4. LAYOUT Y SIDEBAR FIJO
-   ========================================================== */
-.sidebar {
-  width: 260px;
-  min-width: 260px; /* Evita que se comprima */
-  background-color: var(--bg-sidebar);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  flex-shrink: 0;
-  transition: background-color 0.3s ease;
-}
-
-.sidebar-header h2 {
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.sidebar-header .badge {
-  background-color: #3b82f6;
-  font-size: 0.7rem;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.accessibility-controls {
-  margin: 20px 0;
-  padding: 10px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.control-label {
-  color: #94a3b8;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 5px;
-}
-
-.btn-group button, .btn-theme {
-  background: #2d2d44;
-  border: none;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btn-group button.active, .btn-group button:hover, .btn-theme:hover {
-  background: #3b82f6;
-}
-
-.btn-theme {
-  width: 100%;
-  margin-top: 8px;
-}
-
-.sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex-grow: 1;
-}
-
-.sidebar-menu button {
-  background: transparent;
-  border: none;
-  color: #cbd5e1;
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.sidebar-menu button.active, .sidebar-menu button:hover {
-  background: rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
-}
-
-.sidebar-footer {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 15px;
-}
-
-.admin-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.avatar-icon {
-  background: #3b82f6;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-weight: bold;
-  color: white;
-}
-
-.btn-logout {
-  width: 100%;
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.main-content {
-  flex-grow: 1;
-  padding: 20px;
-  overflow-x: hidden;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.stat-card {
-  background: var(--bg-card);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.stat-card span {
-  color: var(--text-muted);
-  font-weight: bold;
-}
-
-.content-section {
-  background: var(--bg-card);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.form-control {
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  width: 100%;
-  max-width: 300px;
-}
-
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.data-table th, .data-table td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.data-table th {
-  background: var(--table-header);
-  color: var(--text-muted);
-}
-
-/* Media Queries para Teléfonos */
-@media (max-width: 768px) {
-  .admin-container {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-    min-width: 100%;
-    height: auto;
-  }
-  .section-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .form-control {
-    max-width: 100%;
-  }
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+.bg-dark .form-select option {
+  background-color: #18181b !important;
+  color: #ffffff !important;
 }
